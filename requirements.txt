@@ -6,3 +6,4 @@ python-dotenv
 langchain-groq
 arxiv
 wikipedia
+langgraph-cli[inmem]
