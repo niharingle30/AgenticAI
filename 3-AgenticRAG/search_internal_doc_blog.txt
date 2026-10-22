@@ -1,0 +1,89 @@
+TRANSFORMERS IN ARTIFICIAL INTELLIGENCE
+
+1. WHAT IS A TRANSFORMER?
+A transformer is a neural-network architecture that processes sequences and learns how their elements relate to one another. An input sequence may consist of words, code tokens, audio representations, or biological symbols. The model builds contextual representations and, depending on its architecture and training, can classify, understand, or generate sequences. In language applications, context helps distinguish the meaning of a word based on other words in the sentence.
+
+2. WHY TRANSFORMERS MATTER
+Earlier sequence models, especially recurrent neural networks, process inputs one step after another. That sequential dependence can slow training and make it difficult to capture relationships between distant elements. Transformer self-attention allows many positions to interact directly and supports parallel computation during training. This helped make large language models practical. Transformer-based systems also support adapting pretrained models to specialized domains through fine-tuning and can be combined with retrieval-augmented generation (RAG), which supplies relevant external information at inference time. Transformer architectures also support multimodal tasks involving combinations of text, images, and other data.
+
+3. USE CASES
+Natural language processing: answering questions, summarizing documents, generating text, and interpreting instructions.
+Machine translation: representing meaning in one language and producing corresponding text in another.
+Speech and language interfaces: supporting transcription and conversational assistants.
+Code processing: interpreting or generating programming-language sequences.
+DNA analysis: modeling patterns across nucleotide sequences and investigating genetic variation.
+Protein analysis: modeling amino-acid sequences and assisting research on protein properties or structures.
+Multimodal AI: relating language to images or other data modalities.
+
+4. HIGH-LEVEL OPERATION
+A model begins by dividing its input into tokens or other manageable sequence units. Each unit is mapped to a learned numerical representation called an embedding. Because attention alone does not specify order, positional information is added or otherwise incorporated. Transformer layers repeatedly combine information across positions through attention and transform each position's representation through feed-forward networks. The resulting representations can support classification, translation, next-token prediction, or another task. Generative models produce outputs by repeatedly predicting additional tokens.
+
+5. TOKENIZATION AND INPUT EMBEDDINGS
+Tokenization converts text into units that a model can process. A token might be a whole word, a subword fragment, or punctuation, depending on the tokenizer. Embeddings map token identifiers to vectors of numbers. During training, the model learns vector representations that help encode useful patterns and relationships. Contextual transformer layers then refine those representations so that a token's meaning can depend on surrounding tokens.
+
+6. POSITIONAL INFORMATION
+A sequence's order changes its meaning, but self-attention by itself does not inherently encode the order of tokens. Positional encodings or learned positional embeddings provide information about each token's location. This allows the network to distinguish sequences containing the same tokens in different orders and to reason about relative or absolute positions.
+
+7. SELF-ATTENTION
+Self-attention lets a token use information from other tokens in the same sequence. The model projects token representations into three kinds of vectors: queries, keys, and values. A query represents what information a position seeks; keys help measure which positions are relevant; values provide the information to aggregate. The model computes attention scores between queries and keys, converts scores into weights, and forms weighted combinations of value vectors. Consequently, a word with several possible meanings can be interpreted in light of relevant surrounding words.
+
+8. MULTI-HEAD ATTENTION
+Multi-head attention performs several attention computations with different learned projections. Different heads can capture different relationships, such as grammatical dependencies, nearby context, or long-distance associations. Their results are combined into an updated representation. Attention heads are learned components rather than manually assigned linguistic rules.
+
+9. TRANSFORMER BLOCKS
+Transformers stack multiple blocks to progressively refine their representations. Common block components include multi-head attention, position-wise feed-forward networks, residual connections, and normalization. The attention component mixes information across positions. The feed-forward component applies learned transformations to each position. Residual connections help information and gradients flow through deep networks. Normalization contributes to more stable training. Exact component order varies among architectures.
+
+10. ENCODERS AND DECODERS
+In encoder-decoder designs, an encoder creates contextual representations of the input, and a decoder generates an output sequence. The decoder may attend both to its own preceding output tokens and to encoder representations. Other model families use only encoders or only decoders. Encoder-only models often focus on understanding or classification, whereas decoder-only models are widely used for autoregressive text generation.
+
+11. LINEAR OUTPUT LAYERS AND SOFTMAX
+For token prediction, a final learned linear projection converts the model's hidden representation into scores called logits, typically one per vocabulary token. Softmax turns these scores into a probability distribution. A decoding strategy then selects the next token, and the generation process repeats. Not every transformer application uses token-level softmax; classification and other tasks can use different output heads.
+
+12. TRANSFORMERS COMPARED WITH RNNS
+Recurrent neural networks update a hidden state as they read elements in sequence. This can be useful for streaming or constrained applications, but it limits parallelism across time steps. Transformers can relate positions through attention without repeatedly carrying a single recurrent hidden state through the entire input. They often train more efficiently on modern accelerators and handle long-range dependencies effectively. Attention can also be computationally expensive for very long sequences, so architecture choice depends on the application.
+
+13. TRANSFORMERS COMPARED WITH CNNS
+Convolutional neural networks learn local patterns using filters, making them well suited to many image-processing tasks. Transformers use attention to model relationships among sequence elements. Vision transformers convert an image into patches, embed those patches, and use attention to learn relationships among them. CNNs remain useful and efficient in many computer-vision systems; the architectures have different trade-offs rather than one universally replacing the other.
+
+14. BERT: BIDIRECTIONAL ENCODER REPRESENTATIONS FROM TRANSFORMERS
+BERT is an encoder-oriented transformer family designed to build context-aware representations. Its masked-language-model pretraining objective hides selected input tokens and trains the model to predict them using information from both sides. Bidirectional context is useful for language understanding tasks such as classification and information extraction.
+
+15. GPT: GENERATIVE PRETRAINED TRANSFORMERS
+GPT-style models generally use decoder-only transformer architectures trained to predict the next token from preceding context. This autoregressive process allows them to generate passages, answer questions, summarize material, and produce code. Their output depends on their training, prompt context, and available tools or retrieved documents.
+
+16. BART: BIDIRECTIONAL AND AUTOREGRESSIVE TRANSFORMER
+BART combines an encoder that can inspect the full input context with an autoregressive decoder that generates output step by step. This structure supports text-generation tasks conditioned on an input, including summarization and rewriting.
+
+17. MULTIMODAL TRANSFORMERS
+Multimodal models combine information from different data types, commonly text and images. Architectures such as ViLBERT and VisualBERT explore ways to align or fuse visual and linguistic representations. Such systems can support tasks where understanding the relationship between a picture and a question is essential.
+
+18. VISION TRANSFORMERS (VIT)
+A vision transformer divides an image into fixed-size patches. Each patch is embedded as a vector, and positional information identifies where patches originated. Transformer layers then model relationships among patches, allowing the system to learn features for tasks such as image classification. These are text-only notes; no images are included.
+
+19. TRANSFORMERS, LLMS, AND RAG
+Transformers provide the neural architecture behind many modern large language models. RAG is a system design that combines retrieval of relevant external material with generation by a language model. A retriever can search a FAISS index or another vector database and pass matched passages to a transformer-based model. RAG does not alter the basic transformer mechanism; it enriches the context supplied to the model. In an agentic RAG workflow, an agent may choose when and where to retrieve information.
+
+20. AWS OPTIONS FOR TRANSFORMER WORKLOADS
+Amazon SageMaker JumpStart offers access to pretrained models and workflows for adapting and deploying them. Amazon Bedrock provides managed access to foundation models and services for building generative-AI applications, including agent-related capabilities. AWS Trainium is a family of AI accelerators designed for training and inference workloads. Service features and model availability can change; check AWS product documentation before planning a deployment.
+
+21. IMPORTANT TERMS FOR RETRIEVAL
+Transformer: neural architecture based on attention-driven contextual processing.
+Token: a unit of text or another sequence used as model input.
+Embedding: a numerical vector representation.
+Positional encoding: information about sequence order or position.
+Self-attention: weighted information sharing among positions in one sequence.
+Query: a projected vector used to look for relevant information.
+Key: a projected vector used to calculate relevance.
+Value: a projected vector carrying information to aggregate.
+Attention head: one learned attention computation within multi-head attention.
+Encoder: component that creates representations of input data.
+Decoder: component that generates output, often autoregressively.
+Logits: raw prediction scores before probability normalization.
+Softmax: function converting scores into normalized probabilities.
+RNN: recurrent neural network that processes sequential state updates.
+CNN: convolutional neural network emphasizing learned local filters.
+BERT: bidirectional encoder-oriented transformer family.
+GPT: autoregressive generative transformer family.
+BART: encoder-decoder model combining bidirectional input modeling and autoregressive output.
+ViT: vision transformer that operates on image patches.
+RAG: retrieval-augmented generation, using external evidence as model context.
