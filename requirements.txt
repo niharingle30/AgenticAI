@@ -30,3 +30,4 @@ langchain_ollama
 langchain-astradb
 langchain-experimental
 rank_bm25
+litellm
